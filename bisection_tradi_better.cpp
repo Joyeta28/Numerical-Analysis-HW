@@ -15,7 +15,7 @@ void bisectionTraditional(double a, double b) {
     int iteration = 0;
     double c;
 
-    while ((b - a) >= TOLERANCE) {
+    while (abs(b - a) >= TOLERANCE) {
         c = (a + b) / 2;
         iteration++;
 
@@ -27,7 +27,7 @@ void bisectionTraditional(double a, double b) {
             a = c;
     }
 
-    cout << "Traditional Method:\n";
+    cout << "Traditional Method:"<<endl;
     cout << "Root = " << c << " in " <<iteration<< " iterations."<<endl;
 }
 
@@ -43,8 +43,7 @@ bool betterRange(double &a, double &b) {
     return false;
 }
 
-void bisectionBetter() {
-    double a, b;
+void bisectionBetter(double a,double b) {
 
     if (!betterRange(a, b)) {
         cout << "No sign change found in range [-100, 100]."<<endl;
@@ -55,7 +54,7 @@ void bisectionBetter() {
     int iteration = 0;
     double c;
 
-    while ((b - a) >= TOLERANCE) {
+    while (abs(b - a) >= TOLERANCE) {
         c = (a + b) / 2;
         iteration++;
 
@@ -67,14 +66,16 @@ void bisectionBetter() {
             a = c;
     }
 
-    cout << "Better Method:\n";
-    cout << "Root = " << c << " in " << iteration << " iterations.\n";
+    cout << "Better Method:"<<endl;
+    cout << "Root = " << c << " in " << iteration << " iterations."<<endl;
 }
 
 int main() {
-    bisectionTraditional(1, 2);
+    double a,b;
+    cin>>a>>b;
+    bisectionTraditional(a,b);
 
-    bisectionBetter();
+    bisectionBetter(a,b);
 
     return 0;
 }
