@@ -11,15 +11,14 @@ double f(double x) {
 
 void regulaFalsi(double a,double b) {
     if (f(a) * f(b) >= 0 || isnan(f(a)) || isnan(f(b))) {
-        cout << "Invalid interval"<<endl;
+        cout<<"Invalid interval"<<endl;
         return;
     }
 
     double c;
     int iterations = 0;
 
-    do {
-
+   while(abs(f(c))> TOLERANCE){
         c = (a*f(b) - b*f(a))/(f(b) - f(a));
         iterations++;
 
@@ -31,9 +30,9 @@ void regulaFalsi(double a,double b) {
         else
             a = c;
 
-    } while(abs(f(c))> TOLERANCE);
+    } 
 
-    cout << "Root "<< c <<" found in " <<iterations<<" iterations."<<endl;
+    cout<<"Root "<<c<<" found in "<<iterations<<" iterations."<<endl;
 }
 
 int main() {
