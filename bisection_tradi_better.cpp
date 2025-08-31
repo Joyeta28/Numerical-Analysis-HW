@@ -4,31 +4,28 @@ using namespace std;
 
 double TOLERANCE = 0.0001;
 double f(double x) {
-    return x*x*x - x - 2;
+    return 4*x*x + 3*x -3;
 }
 
-void bisectionTraditional(double a, double b) {
-    if (f(a) * f(b) >= 0) {
-        return;
-    }
-
-    int iteration = 0;
+void bisection(double a, double b){
     double c;
+    if(f(b)*f(a) >= 0) return;
+    int it=1;
+    double error = abs(b-a);
+    while(error >= tolerance){
+        c = (a+b)/2;
+        error = abs(a-b);
+        cout<<"iteration : "<<it<<endl<<" a "<<a<<" b "<<b<<" c "<<c<<" f(c) "<<f(c)<<" error "<<error<<endl;
+            it++;
+        if(f(c)*f(a) < 0){
+            b=c;
+        }
+        else{
+            a=c;
+        }
 
-    while (abs(b - a) >= TOLERANCE) {
-        c = (a + b) / 2;
-        iteration++;
-
-        if (f(c) == 0) break;
-
-        if (f(a) * f(c) < 0)
-            b = c;
-        else
-            a = c;
     }
 
-    cout << "Traditional Method:"<<endl;
-    cout << "Root = " << c << " in " <<iteration<< " iterations."<<endl;
 }
 
 bool betterRange(double &a, double &b) {
